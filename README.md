@@ -21,48 +21,50 @@ A API para controle de academia oferecerá as seguintes funcionalidades principa
 
 Para executar o projeto em um ambiente de desenvolvimento local, siga os passos abaixo:
 
-1. **Pré-requisitos**: Certifique-se de ter instalado o Python (versão 3.8 ou superior), o Django (versão 4.2 ) e o Django Rest Framework (versão 3.14) em seu ambiente.
+1. **Pré-requisitos**: Certifique-se de ter instalado o Docker (versão 20.10 ou superior), o Django (versão 4.2 ) e o Docker compose (versão v2.15 ou superior) em seu ambiente.
 
-2. **Clone o repositório**: Faça um clone deste repositório em sua máquina local utilizando o seguinte comando:
+2. **Clone o repositório**: Faça um clone deste repositório em sua máquina local utilizando o seguinte comando e em seguida vá para o diretório de trabalho:
+   ```
    git clone https://github.com/jonaspeixoto/Api_Gym.git
-
-3. **Configuração do ambiente virtual (opcional, mas recomendado)**: Crie um ambiente virtual para isolar as dependências do projeto. 
-
-4. **Instalação das dependências**: Navegue até a pasta do projeto e instale as dependências utilizando o gerenciador de pacotes pip:
-
    ```
-   cd gym_api
-   pip install -r requirements.txt
+   ```
+   cd Apy_Gym
    ```
 
-5. **Configuração Variaveis de Abiente**: Crie  um arquivo de configuração para informações das variaveis de ambiente.
+3. **Criação de serviço docker**: Crie uma imagem docker para o servidor de desenvolvimento utilizando docker compose:
    ```
-   cd gym_api
-   cd gym_api
+   docker-compose build
    ```
-
-6. **Realizando as Migrações**: Execute as migrações para criar as tabelas necessárias no banco de dados:
+4. **Inicialização do servidor de desenvolvimento**: Inicialize o servidor de desenvolvimento utilizando o docker compose:
 
    ```
+   docker-compose up
+   ```
+   Isso fará o docker-compose executar para você, na inicialização do container docker, os seguintes comandos:
+   ```
+   python manage.py wait_for_db
    python manage.py migrate
+   python manage.py runserver 0.0.0.0:8000
    ```
 
-7. **Criando um Superusuário**: Crie um superusuário para ter acesso ao painel administrativo do Django:
-
+5. **Abrindo aplicação no browser**: Com o servidor executando, em um browser de sua preferência, vá para o seguinte link:
    ```
-   python manage.py createsuperuser
+   http://127.0.0.1:8000/
+   ```
+   ou
+   ```
+   http://localhost:8000/
    ```
 
-8. **Executando o Servidor de Desenvolvimento**: Inicie o servidor de desenvolvimento do Django para testar a API:
-
+6. **Execução de comandos shell no container docker**: Execute, durante o desenvolvimento, comandos shell no container docker utilizando a seguinte sintaxe (substituindo o comando entre aspas abaixo pelo comando desejado):
    ```
-   python manage.py runserver
+   docker-compose run --rm gym_api sh -c "python manage.py test"
    ```
 
 ## Colaboradores:
 
+Eduardo Soares - [Github]() - [LinkedIn]() - email@example.com
 
+Jonas Peixoto - [Github]() - [LinkedIn]() - email@example.com
 
-
-
-
+Vinícius Oliveira - [Github](https://github.com/vinicoli) - [LinkedIn](https://www.linkedin.com/in/vinicoli) - vinioliveira.web@gmail.com
